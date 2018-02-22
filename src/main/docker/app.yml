@@ -1,0 +1,14 @@
+version: '2'
+services:
+    capstone-app:
+        image: capstone
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://capstone-mysql:3306/capstone?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    capstone-mysql:
+        extends:
+            file: mysql.yml
+            service: capstone-mysql
