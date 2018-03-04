@@ -1,0 +1,50 @@
+
+<div *ngIf="sKU">
+    <h2><span>SKU</span> {{sKU.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Sku</span></dt>
+        <dd>
+            <span>{{sKU.sku}}</span>
+        </dd>
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{sKU.name}}</span>
+        </dd>
+        <dt><span>Uom</span></dt>
+        <dd>
+            <span>{{sKU.uom}}</span>
+        </dd>
+        <dt><span>Units Per Uom</span></dt>
+        <dd>
+            <span>{{sKU.unitsPerUom}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <span>{{sKU.category}}</span>
+        </dd>
+        <dt><span>Cost</span></dt>
+        <dd>
+            <span>{{sKU.cost}}</span>
+        </dd>
+        <dt><span>Tags</span></dt>
+        <dd>
+            <span>{{sKU.tags}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'sku-my-suffix/'+ sKU.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

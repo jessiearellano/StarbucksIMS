@@ -1,0 +1,55 @@
+// insert into sku (id, sku, name, uom, units_per_uom, category, jhi_cost, tags)
+//    select SKU, SKU, Item_Name, UOM, Units_Per_UOM, Category, Cost, tags from All_items
+
+entity SKU {
+	sku Long required,
+    name String,
+    uom String,
+    unitsPerUom Integer,
+    category String,
+    cost Double,
+    tags String
+}
+
+entity Store {
+	id Long required,
+    address String,
+    city String,
+    state String,
+    zip String,
+    lat Double,
+    lon Double
+}
+
+entity StoreSKU {
+    quantity Integer
+}
+
+entity User {
+	id Long required
+}
+
+relationship ManyToOne {
+    StoreSKU{storeId} to Store{id}
+}
+
+relationship ManyToOne {
+    StoreSKU{skuId} to SKU{sku}
+}
+
+// the manager relationship
+relationship OneToOne {
+	Store{manager} to User{login}
+}
+
+
+relationship OneToMany {
+	Store{shiftSupervisors} to User{login}
+}
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except StoreSKU
+// Set an angular suffix
+angularSuffix * with mySuffix

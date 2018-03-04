@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Store SKUS</span>
+        <button class="btn btn-primary float-right jh-create-entity create-store-sku-my-suffix" [routerLink]="['/', { outlets: { popup: ['store-sku-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Store SKU
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="storeSKUS">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Quantity</span></th>
+            <th><span>Store Id</span></th>
+            <th><span>Sku Id</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let storeSKU of storeSKUS ;trackBy: trackId">
+                <td><a [routerLink]="['../store-sku-my-suffix', storeSKU.id ]">{{storeSKU.id}}</a></td>
+                <td>{{storeSKU.quantity}}</td>
+                <td>
+                    <div *ngIf="storeSKU.storeIdId">
+                        <a [routerLink]="['../store-my-suffix', storeSKU.storeIdId  ]" >{{storeSKU.storeIdId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="storeSKU.skuIdId">
+                        <a [routerLink]="['../sku-my-suffix', storeSKU.skuIdId  ]" >{{storeSKU.skuIdId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../store-sku-my-suffix', storeSKU.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'store-sku-my-suffix/'+ storeSKU.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'store-sku-my-suffix/'+ storeSKU.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

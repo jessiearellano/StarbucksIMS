@@ -1,0 +1,50 @@
+
+<div *ngIf="store">
+    <h2><span>Store</span> {{store.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Address</span></dt>
+        <dd>
+            <span>{{store.address}}</span>
+        </dd>
+        <dt><span>City</span></dt>
+        <dd>
+            <span>{{store.city}}</span>
+        </dd>
+        <dt><span>State</span></dt>
+        <dd>
+            <span>{{store.state}}</span>
+        </dd>
+        <dt><span>Zip</span></dt>
+        <dd>
+            <span>{{store.zip}}</span>
+        </dd>
+        <dt><span>Lat</span></dt>
+        <dd>
+            <span>{{store.lat}}</span>
+        </dd>
+        <dt><span>Lon</span></dt>
+        <dd>
+            <span>{{store.lon}}</span>
+        </dd>
+        <dt><span>Manager</span></dt>
+        <dd>
+            {{store.managerId}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'store-my-suffix/'+ store.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

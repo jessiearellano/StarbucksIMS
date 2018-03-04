@@ -1,0 +1,70 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySKULabel">Create or edit a SKU</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!sKU.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="sKU.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_sku">Sku</label>
+            <input type="number" class="form-control" name="sku" id="field_sku"
+                [(ngModel)]="sKU.sku" required/>
+            <div [hidden]="!(editForm.controls.sku?.dirty && editForm.controls.sku?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sku?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.sku?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="sKU.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_uom">Uom</label>
+            <input type="text" class="form-control" name="uom" id="field_uom"
+                [(ngModel)]="sKU.uom" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_unitsPerUom">Units Per Uom</label>
+            <input type="number" class="form-control" name="unitsPerUom" id="field_unitsPerUom"
+                [(ngModel)]="sKU.unitsPerUom" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category">Category</label>
+            <input type="text" class="form-control" name="category" id="field_category"
+                [(ngModel)]="sKU.category" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_cost">Cost</label>
+            <input type="number" class="form-control" name="cost" id="field_cost"
+                [(ngModel)]="sKU.cost" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_tags">Tags</label>
+            <input type="text" class="form-control" name="tags" id="field_tags"
+                [(ngModel)]="sKU.tags" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

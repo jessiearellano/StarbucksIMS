@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>SKUS</span>
+        <button class="btn btn-primary float-right jh-create-entity create-sku-my-suffix" [routerLink]="['/', { outlets: { popup: ['sku-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new SKU
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="sKUS">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Sku</span></th>
+            <th><span>Name</span></th>
+            <th><span>Uom</span></th>
+            <th><span>Units Per Uom</span></th>
+            <th><span>Category</span></th>
+            <th><span>Cost</span></th>
+            <th><span>Tags</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let sKU of sKUS ;trackBy: trackId">
+                <td><a [routerLink]="['../sku-my-suffix', sKU.id ]">{{sKU.id}}</a></td>
+                <td>{{sKU.sku}}</td>
+                <td>{{sKU.name}}</td>
+                <td>{{sKU.uom}}</td>
+                <td>{{sKU.unitsPerUom}}</td>
+                <td>{{sKU.category}}</td>
+                <td>{{sKU.cost}}</td>
+                <td>{{sKU.tags}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../sku-my-suffix', sKU.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sku-my-suffix/'+ sKU.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'sku-my-suffix/'+ sKU.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
